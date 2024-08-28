@@ -35,10 +35,23 @@ if metrics_button:
 st.divider()
 
 # escribir un mensaje
-st.write(f'Distribución del precio de los autos para la marca {selection}')
+st.subheader(f'Distribución del precio de los autos para la marca {selection}')
 
 # crear un histograma
-fig = px.histogram(df_cars_per_brand, x="price")
+fig = px.histogram(
+    df_cars_per_brand,
+    x="price",
+    color_discrete_sequence=['#EF553B'])
 
 # mostrar un gráfico Plotly interactivo
+st.plotly_chart(fig, use_container_width=True)
+
+# escribir un mensaje
+st.subheader(f'Relación entre el precio y el odometro {selection}')
+fig = px.scatter(
+    df_cars_per_brand,
+    x="odometer",
+    y="price",
+    color_discrete_sequence=['#EF553B'])
+
 st.plotly_chart(fig, use_container_width=True)
